@@ -1,5 +1,6 @@
 streamlit
 transformers
 torch
+torchvision
 PyPDF2
 python-docx
