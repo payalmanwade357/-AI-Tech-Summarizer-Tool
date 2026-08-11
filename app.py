@@ -1,4 +1,3 @@
-```python
 import streamlit as st
 from utils import summarize_text, read_pdf, read_docx
 
@@ -71,7 +70,7 @@ if st.button("Generate Summary"):
 
             except Exception as e:
                 st.error(f"Error while generating summary: {e}")
-```
+
 
 
        
