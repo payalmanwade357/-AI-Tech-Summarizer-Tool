@@ -5,17 +5,9 @@ summarizer = pipeline(
     "summarization",
     model="sshleifer/distilbart-cnn-12-6"
 )
-print("✅ Model Loaded Successfully!")
-
-from transformers import pipeline
-
-summarizer = pipeline(
-    "summarization",
-    model="sshleifer/distilbart-cnn-12-6"
-)
 
 print("✅ Model Loaded Successfully!")
-
+```
 text = """
 Artificial Intelligence is transforming healthcare by helping doctors diagnose diseases,
 predict patient outcomes, and improve medical treatments.
@@ -29,4 +21,4 @@ summary = summarizer(
 )
 
 print("\nSummary:")
-print(summary[0]["summary_text"])
+print(summary[0]["summary_text"])```python
