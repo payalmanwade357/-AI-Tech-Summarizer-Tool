@@ -1,4 +1,3 @@
-```python
 import PyPDF2
 from docx import Document
 from model import summarizer
@@ -50,7 +49,7 @@ def read_docx(file):
         text += para.text + "\n"
 
     return text
-```
+
 
     
    
