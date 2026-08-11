@@ -1,16 +1,19 @@
+```python
 import streamlit as st
 from utils import summarize_text, read_pdf, read_docx
 
+# Page Configuration
 st.set_page_config(
     page_title="Tech Summarizer",
     page_icon="📝",
     layout="wide"
 )
 
+# Title
 st.title("📝 AI Tech Summarizer Tool")
-
 st.write("Summarize Technical Articles, Blogs, PDFs and DOCX Files")
 
+# Select Input Type
 option = st.radio(
     "Choose Input Type",
     ["Text", "PDF", "DOCX"]
@@ -18,12 +21,14 @@ option = st.radio(
 
 text = ""
 
+# Text Input
 if option == "Text":
     text = st.text_area(
         "Paste your article",
         height=300
     )
 
+# PDF Input
 elif option == "PDF":
     pdf = st.file_uploader(
         "Upload PDF",
@@ -33,6 +38,7 @@ elif option == "PDF":
     if pdf:
         text = read_pdf(pdf)
 
+# DOCX Input
 elif option == "DOCX":
     doc = st.file_uploader(
         "Upload DOCX",
@@ -42,22 +48,30 @@ elif option == "DOCX":
     if doc:
         text = read_docx(doc)
 
+# Generate Summary
 if st.button("Generate Summary"):
 
-    if text.strip() == "":
+    if not text.strip():
         st.warning("Please provide some text.")
+
     else:
-
         with st.spinner("Generating Summary..."):
+            try:
+                summary = summarize_text(text)
 
-            summary = summarize_text(text)
+                st.subheader("📌 Summary")
+                st.success(summary)
 
-        st.subheader("Summary")
+                st.download_button(
+                    label="📥 Download Summary",
+                    data=summary,
+                    file_name="summary.txt",
+                    mime="text/plain"
+                )
 
-        st.success(summary)
+            except Exception as e:
+                st.error(f"Error while generating summary: {e}")
+```
 
-        st.download_button(
-            "Download Summary",
-            summary,
-            file_name="summary.txt"
-        )
+
+       
