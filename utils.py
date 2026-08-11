@@ -1,3 +1,4 @@
+```python
 import PyPDF2
 from docx import Document
 from model import summarizer
@@ -23,12 +24,15 @@ def summarize_text(text):
 
 
 def read_pdf(file):
+    """Extract text from a PDF file."""
+
     pdf_reader = PyPDF2.PdfReader(file)
 
     text = ""
 
     for page in pdf_reader.pages:
         page_text = page.extract_text()
+
         if page_text:
             text += page_text
 
@@ -36,6 +40,8 @@ def read_pdf(file):
 
 
 def read_docx(file):
+    """Extract text from a DOCX file."""
+
     doc = Document(file)
 
     text = ""
@@ -44,3 +50,7 @@ def read_docx(file):
         text += para.text + "\n"
 
     return text
+```
+
+    
+   
